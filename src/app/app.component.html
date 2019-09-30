@@ -1,0 +1,78 @@
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="../assets/images/up.png" class="d-inline-block rounded-circle align-top img1" alt="">
+    Starts!
+  </a>
+</nav>
+<div class="divider"></div>
+<div class="container mt-2">
+  <div class="row text-justify">
+    <div class="col-12 d-text-justify">
+        <div class="col">
+        <p>preview_url: {{url}}</p>
+
+
+    </div>
+  </div>
+</div>
+
+<div>
+  <div>
+    <app-track [nose]="url" *ngIf="mostrar"></app-track>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="container-fluid mt-3">
+    <div class="col-12 d-flex justify-content-center ">
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Artista</span>
+        </div>
+        <input type="text" class="form-control" aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-sm" (keyup)="show($event.target.value)">
+      </div>
+    </div>
+    
+
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-4" *ngFor="let item of tracks">
+      <div class="card mb-3">
+        <div class="row no-gutters m-1 " (mouseover)="play(item.id)" (mouseleave)="stop()" >
+          <div class="col-2 bg-primary  ">
+            <img [src]="item.album.images[0].url" alt="" class="img" >
+          </div>
+          <div class="ml-2 col-8">
+            <p><strong>{{item.album.artists[0].name}} </strong></p>
+            <div>
+              <span><small>{{item.name}} </small></span>
+            </div>
+            <div>
+              <span><small><small>{{item.album.name}} </small></small></span>
+            </div>
+          </div>
+          <div class="col-1 mb-0">
+              <div>
+                  <span class="badge badge-pill badge-info mt-0" (click)="add(item)">Add</span>
+              </div>
+              <div>
+                  <span class="badge badge-pill badge-info mt-0" (click)="sound(item.id)">Rep</span>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <button (click)="crearPlaylist()" >Crear playlist</button>
+</div>
